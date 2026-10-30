@@ -45,7 +45,8 @@ terraform-ansible-infra-automation/
     └── playbooks/
         ├── 01-sysctl-hardening.yml  # Kernel networking protection & file permission lockdown
         └── 02-docker-install.yml    # Upstream GPG key validation, APT repo setup & Docker Engine
-⚡ Core Technical Features & Hardening Standards
+
+## ⚡ Core Technical Features & Hardening Standards
 1. Provisioning & Networking (Terraform Layer)
 Modular Node Scaling: Parameterized node definitions (variables.tf) allow instant cluster expansion by modifying instance counts.
 
@@ -67,7 +68,7 @@ Upstream APT Management: Registers official Docker stable architecture channels 
 
 Complete Container Engine Suite: Installs docker-ce, docker-ce-cli, and containerd.io runtime primitives with full system service startup enablement.
 
-🚀 Step-by-Step Deployment Guide
+## 🚀 Step-by-Step Deployment Guide
 Prerequisites
 Linux / WSL2 Control Node
 
@@ -130,7 +131,7 @@ ansible nodes -m command -a "docker --version" -i inventory.ini
 
 # 3. Verify Security Baseline Enforcement (/etc/shadow permissions)
 ansible nodes -m command -a "stat -c '%a %U:%G' /etc/shadow" -i inventory.ini
-🧪 Idempotency & Compliance Testing
+## 🧪 Idempotency & Compliance Testing
 This codebase strictly adheres to Idempotent Execution Principles. Re-running any playbook against an already-configured node yields changed=0, confirming that no unintended drift or state mutation occurs on existing nodes:
 
 Bash
