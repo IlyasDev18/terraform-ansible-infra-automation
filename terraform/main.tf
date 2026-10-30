@@ -7,7 +7,10 @@ terraform {
   }
 }
 
-provider "docker" {}
+provider "docker" {
+  host        = "unix:///var/run/docker.sock"
+  api_version = "1.44"
+}
 
 # Create a private virtual network for our node infrastructure
 resource "docker_network" "lab_net" {
