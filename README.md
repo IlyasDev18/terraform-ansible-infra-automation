@@ -2,7 +2,6 @@
 
 ![Terraform](https://img.shields.io/badge/Terraform-1.8+-844FBA?style=flat-square&logo=terraform&logoColor=white)
 ![Ansible](https://img.shields.io/badge/Ansible-2.15+-EE0000?style=flat-square&logo=ansible&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker Engine-24.0+-2496ED?style=flat-square&logo=docker&logoColor=white)
 ![Linux Hardening](https://img.shields.io/badge/Security-Kernel%20Hardened-success?style=flat-square&logo=linux&logoColor=white)
 
 A production-ready Infrastructure-as-Code (IaC) repository demonstrating end-to-end automated provisioning, OS security baseline enforcement, and container runtime orchestration across declarative target Linux nodes.
