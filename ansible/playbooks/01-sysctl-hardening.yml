@@ -1,0 +1,32 @@
+---
+- name: Hardening Kernel Parameters and OS Baseline
+  hosts: nodes
+  gather_facts: yes
+  tasks:
+    - name: Ensure iptables and sysctl utilities are installed
+      apt:
+        name:
+          - procps
+          - iptables
+          - ufw
+        state: present
+        update_cache: yes
+
+    - name: Harden network kernel parameters (sysctl)
+      sysctl:
+        name: "{{ item.key }}"
+        value: "{{ item.value }}"
+        state: present
+        reload: yes
+      ignore_errors: yes  # Ignored if host kernel restricts container sysctl modifications
+      loop:
+        - { key: 'net.ipv4.tcp_syncookies', value: '1' }          # SYN flood protection
+        - { key: 'net.ipv4.conf.all.accept_redirects', value: '0' } # Reject ICMP redirects
+        - { key: 'net.ipv4.conf.all.send_redirects', value: '0' }   # Prevent packet routing
+
+    - name: Set secure permissions on /etc/shadow
+      file:
+        path: /etc/shadow
+        owner: root
+        group: root
+        mode: '0600'
